@@ -1,0 +1,124 @@
+{
+	"info": {
+		"_postman_id": "6ac542e6-75ae-4dc8-ba39-c0c2c620897f",
+		"name": "Primera Entrega Backend II",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "42000492"
+	},
+	"item": [
+		{
+			"name": "Rutas de Auth",
+			"item": [
+				{
+					"name": "registrar",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"first_name\":\"Eric\",\r\n    \"last_name\": \"Bayona\",\r\n    \"email\": \"bayona-eric@hotmail.com\",\r\n    \"password\": \"123\",\r\n    \"age\": 35,\r\n    \"role\": \"admin\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/sessions/register",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"sessions",
+								"register"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Login",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2N2RmMTg0NjhhMDVkYWNhMTM2NmU1NjQiLCJlbWFpbCI6ImJheW9uYS1qdWxpb0Bob3RtYWlsLmNvbSIsInJvbGUiOiJhZG1pbiIsImlhdCI6MTc0MjY3NDkzNSwiZXhwIjoxNzQyNjc1MjM1fQ.OtnKf7JvzAPX6Bun-E_jSIb9uqHMFphaKmHBmWw0tVA",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \r\n    \"email\": \"bayona-eric@hotmail.com\",\r\n    \"password\": \"123\"\r\n    \r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/sessions/login",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"sessions",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Profile",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3ZTA1NzE1MDBmNTE2OGNlMTRjYjc5YSIsImVtYWlsIjoiYmF5b25hLWVyaWNxQGhvdG1haWwuY29tIiwicm9sZSI6ImFkbWluIiwiaWF0IjoxNzQyNzU2Nzk1LCJleHAiOjE3NDI3NTcwOTV9.lfQPjtG7z4EFul124s3aOUU8MeSuTTc4ptG0_ZXAcrU",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/sessions/current",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"sessions",
+								"current"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}

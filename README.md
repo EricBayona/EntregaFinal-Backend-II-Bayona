@@ -64,4 +64,4 @@ Este proyecto es parte de la primera pre-entrega del curso Backend II. El objeti
 ### **Instalación**
 1. Clona este repositorio:
    ```bash
-   git clone <URL_DEL_REPOSITORIO>
+   git clone https://github.com/EricBayona/PrimeraEntregaBackend-II.git

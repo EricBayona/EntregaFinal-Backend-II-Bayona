@@ -1,8 +1,14 @@
 import { z } from "zod";
 
-// Crear
-
-// editar
+export const createProductSchema = z.object({
+    title: z.string(),
+    description: z.string(),
+    price: z.number(),
+    thumbnails: z.array(z.string()),
+    code: z.string(),
+    stock: z.number(),
+    category: z.string(),
+})
 
 export const editProductSchema = {
     // params: z.object({
@@ -17,10 +23,9 @@ export const editProductSchema = {
         stock: z.number().optional(),
         category: z.string().optional(),
     }),
-    query: z.object({
-        name: z.string().min(5),
-        price: z.string()
-    })
+    // query: z.object({
+    //     name: z.string().min(5),
+    //     price: z.string()
+    // })
 };
 
-// eliminar

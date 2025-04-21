@@ -11,7 +11,7 @@ const productSchema = new mongoose.Schema({
         type: Array,
         default: []
     },
-    code: String,
+    code: { type: String, unique: true },
     stock: Number,
     category: String,
     status: {

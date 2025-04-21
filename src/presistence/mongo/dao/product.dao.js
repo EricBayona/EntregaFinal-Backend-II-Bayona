@@ -13,8 +13,7 @@ class ProductDao {
     }
 
     async create(data) {
-        const product = await productModel.create(data);
-        return product;
+        return await productModel.create(data);
     }
 
     async update(id, data) {
@@ -23,8 +22,13 @@ class ProductDao {
     }
 
     async deleteOne(id) {
-        const product = await productModel.findByIdAndUpdate(id, { status: false }, { new: true });
+        const product = await productModel.deleteOne(id);
         return product;
+    }
+    async findByIdAndDelete(id) {
+        const product = await productModel.findByIdAndDelete(id);
+        return product;
+
     }
 }
 

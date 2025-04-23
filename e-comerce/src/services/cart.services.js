@@ -72,6 +72,58 @@ class CartServices {
         const cartUpdate = await cartDao.update(cid, { products: [] });
         return cartUpdate;
     }
+    // async purchaseCart(cid) {
+    //     const cart = await cartDao.getById(cid);
+
+    //     let total = 0;
+    //     const products = [];
+    //     for (const productCart of cart.products) {
+    //         const prod = await productDao.getById(productCart.product);
+    //         if (prod.stock >= productCart.quantity) {
+    //             total += prod.price * productCart.quantity;
+    //             await productDao.update(prod._id, { stock: prod.stock - productCart.quantity });
+    //         } else {
+    //             products.push(productCart);
+    //         }
+    //         await cartDao.update(cid, { products });
+    //     }
+    //     return total;
+    // }
+    async purchaseCart(cid) {
+        const cart = await cartDao.getById(cid);
+        if (!cart) throw new Error(`Carrito con id ${cid} no encontrado`);
+
+        let total = 0;
+        const remainingProducts = []; // productos que no se pudieron comprar
+
+        for (const productCart of cart.products) {
+            const prod = await productDao.getById(productCart.product);
+
+            if (!prod) continue; // si el producto no existe, lo ignora
+
+            if (prod.stock >= productCart.quantity) {
+                total += prod.price * productCart.quantity;
+
+                // Descuenta el stock
+                await productDao.update(prod._id, {
+                    stock: prod.stock - productCart.quantity,
+                });
+            } else {
+                // Guarda los productos que no se pudieron comprar
+                remainingProducts.push(productCart);
+            }
+        }
+
+        // Actualiza el carrito con los productos que no se pudieron comprar
+        await cartDao.update(cid, { products: remainingProducts });
+
+        // Devuelve el total y la lista de productos no comprados
+        return {
+            total,
+            productsNotPurchased: remainingProducts,
+        };
+    }
+
 }
 
 export const cartServices = new CartServices();

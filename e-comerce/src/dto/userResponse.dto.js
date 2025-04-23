@@ -3,6 +3,8 @@ export class UserResponseDto {
         this.fullName = `${user.first_name} ${user.last_name}`;
         this.email = user.email;
         this.age = this.calculateAge(user.birthDate);
+        this.role = user.role;
+        this.cart = user.cart;
     }
 
     calculateAge = (birthDate) => {

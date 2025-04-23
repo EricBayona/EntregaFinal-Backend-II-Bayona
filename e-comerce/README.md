@@ -1,67 +1,101 @@
-# Primera Pre-Entrega Backend II
+# E-commerce
 
-## Descripción del Proyecto
+## Descripción
 
-Este proyecto es parte de la primera pre-entrega del curso Backend II. El objetivo es implementar una aplicación basada en Node.js utilizando MongoDB como base de datos, con funcionalidades clave como autenticación, autorización y manejo de usuarios y carritos de compras. Todo está diseñado siguiendo buenas prácticas de desarrollo backend.
+Este es un proyecto de comercio electrónico donde los usuarios pueden registrar sus cuentas, iniciar sesión y gestionar su carrito de compras. Los administradores pueden gestionar productos y ver todos los carritos. El sistema de autenticación está basado en JWT (JSON Web Tokens), y las rutas están protegidas para garantizar que solo los usuarios adecuados tengan acceso a las funcionalidades correspondientes.
 
----
+## Características
 
-## Tecnologías Utilizadas
+- **Usuarios:** Pueden crear cuentas, iniciar sesión, gestionar su carrito de compras y realizar compras.
+- **Administradores:** Pueden gestionar productos, ver todos los carritos de compras y gestionar los usuarios.
+- **Autenticación:** Implementada mediante JWT (JSON Web Tokens).
+- **Protección de rutas:** Rutas protegidas para garantizar que solo los usuarios y administradores adecuados puedan acceder a ellas.
+- **Base de Datos:** Utiliza MongoDB para almacenar información de usuarios, productos y carritos.
 
-- **Node.js:** Framework para desarrollo del servidor.
-- **Express.js:** Framework para gestionar rutas y middleware.
-- **MongoDB:** Base de datos NoSQL utilizada para almacenar usuarios y carritos.
-- **Mongoose:** ODM para interactuar con MongoDB.
-- **Passport.js:** Librería para manejo de autenticación y autorización.
-- **jsonwebtoken:** Utilizado para generar y verificar tokens JWT.
-- **cookie-parser:** Middleware para manejar cookies en las solicitudes HTTP.
-- **Postman:** Herramienta utilizada para probar el backend.
+## Tecnologías
 
----
+- **Backend:**
+  - Node.js
+  - Express
+  - MongoDB y Mongoose
+  - Passport.js (para la autenticación)
+  - JWT (JSON Web Tokens)
 
-## Funcionalidades Implementadas
+## Instalación
 
-### **Autenticación y Autorización**
-1. **JWT Strategy:**  
-   - Implementación de la estrategia JWT para validar tokens en cookies o encabezado `Authorization`.
-   - Los tokens incluyen información como `id`, `email` y `role`.
-   - Los tokens tienen un tiempo de expiración configurable (actualmente 5 minutos).
+Pasos para instalar y ejecutar el proyecto de manera local:
 
-2. **Middleware de Autenticación:**
-   - `passportCall`: Middleware personalizado para manejar la lógica de autenticación con Passport.
-   - `authRole`: Middleware para validar roles de usuario (`admin` o `user`).
-
-### **Usuarios**
-1. **Creación de Usuarios:**
-   - Los usuarios son creados con información básica como:
-     - `first_name`
-     - `last_name`
-     - `email`
-     - `age`
-     - `password`
-     - Rol predeterminado: `user`.
-   - Relación entre usuarios y carritos implementada con un campo `cart`.
-
-2. **Registro y Login:**
-   - `/register`: Ruta para registrar usuarios nuevos utilizando la estrategia `register`.
-   - `/login`: Ruta para iniciar sesión, que genera un token JWT y lo guarda en una cookie.
-
-3. **Consulta de Usuario Actual:**
-   - `/current`: Ruta que verifica si el usuario está autenticado y devuelve su información.
-
-### **Carrito de Compras**
-- Los usuarios están relacionados con un carrito mediante el campo `cart`.
-- Los carritos pueden incluir una lista de productos con detalles como cantidad y precio total.
-
----
-
-## Instrucciones para Ejecutar el Proyecto
-
-### **Requisitos Previos**
-1. Tener instalado Node.js.
-2. Tener MongoDB configurado y corriendo localmente o en la nube.
-
-### **Instalación**
 1. Clona este repositorio:
-   ```bash
-   git clone https://github.com/EricBayona/PrimeraEntregaBackend-II.git
+
+   git clone https://github.com/EricBayona/EntregaFinal-Backend-II-Bayona.git
+
+Navega al directorio del proyecto:
+
+cd e-commerce
+Instala las dependencias:
+npm install
+
+Configura las variables de entorno. Crea un archivo .env y agrega las siguientes configuraciones:
+
+PORT = tu_Puerto
+MONGO_URL = tu_url_de_mongo
+SESSION_SECRET= tu_clave_secreta
+JWT_SECRET=tu_clave_secreta
+
+Levanta el servidor:
+
+npm run dev
+
+El servidor se ejecutará en http://localhost:3000. por defecto
+
+Uso
+Registro de usuario
+Realiza una solicitud POST a /api/sessions/register con los siguientes datos:
+
+{
+"first_name": "Juan",
+"last_name": "Pérez",
+"email": "juan.perez@ejemplo.com",
+"password": "contraseña123!"
+}
+Inicio de sesión
+Realiza una solicitud POST a /api/sessions/login con tu correo y contraseña:
+
+{
+"email": "juan.perez@ejemplo.com",
+"password": "contraseña123!"
+}
+Carrito de compras
+Ver el carrito:
+
+Realiza una solicitud GET a /api/cart/mycart para ver los productos en tu carrito.
+
+Agregar un producto al carrito:
+
+Realiza una solicitud POST a /api/cart/:cid/product/:pid para agregar un producto a tu carrito.
+
+Eliminar un producto del carrito:
+
+Realiza una solicitud DELETE a /api/cart/:cid/product/:pid para eliminar un producto de tu carrito.
+
+Actualizar la cantidad de un producto en el carrito:
+
+Realiza una solicitud PUT a /api/cart/:cid/product/:pid para actualizar la cantidad de un producto en tu carrito.
+
+Limpiar el carrito:
+
+Realiza una solicitud DELETE a /api/cart/:cid para eliminar todos los productos del carrito.
+
+Realizar la compra:
+
+Realiza una solicitud POST a /api/cart/purchase para comprar los productos del carrito.
+
+Endpoints
+
+Método Ruta Descripción
+GET /api/cart/mycart Ver el carrito de compras del usuario.
+POST /api/cart/:cid/product/:pid Agregar un producto al carrito.
+PUT /api/cart/:cid/product/:pid Actualizar la cantidad de un producto en el carrito.
+DELETE /api/cart/:cid/product/:pid Eliminar un producto del carrito.
+DELETE /api/cart/:cid Eliminar todos los productos del carrito.
+POST /api/cart/purchase Realizar la compra del carrito y generar un ticket.

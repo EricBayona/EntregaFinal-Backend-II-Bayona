@@ -4,7 +4,7 @@ import { connectMongoDB } from './config/nomgoDB.config.js';
 import routes from './routes/index.js';
 import cookieParser from 'cookie-parser';
 import passport from "./config/passport/passport.config.js";
-
+import cors from "cors";
 
 const app = express();
 
@@ -19,6 +19,8 @@ app.use(express.static("public"));
 app.use(cookieParser());
 
 app.use(passport.initialize());
+
+app.use(cors());
 
 app.use("/api", routes);
 

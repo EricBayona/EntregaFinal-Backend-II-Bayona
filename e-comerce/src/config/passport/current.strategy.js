@@ -27,7 +27,7 @@ const curretStrategy
         try {
             if (payload) {
                 const user = await userDao.getOne({ email: payload.email });
-                return done(null, user);
+                return done(null, user, { message: "Estas logueado" });
             }
 
             return done(null, false);

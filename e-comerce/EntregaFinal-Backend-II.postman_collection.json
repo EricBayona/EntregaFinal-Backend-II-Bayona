@@ -1,0 +1,614 @@
+{
+	"info": {
+		"_postman_id": "6ac542e6-75ae-4dc8-ba39-c0c2c620897f",
+		"name": "EntregaFinal-Backend-II",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "42000492"
+	},
+	"item": [
+		{
+			"name": "Rutas de Auth",
+			"item": [
+				{
+					"name": "registrar",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"first_name\":\"eric\",\r\n    \"last_name\": \"Bayona\",\r\n    \"email\": \"eric@hotmail.com\",\r\n    \"password\": \"HolaMundo!\",\r\n    \"birthDate\": \"1989-12-17\",\r\n    \"role\": \"admin\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/sessions/register",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"sessions",
+								"register"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Login",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2N2RmMTg0NjhhMDVkYWNhMTM2NmU1NjQiLCJlbWFpbCI6ImJheW9uYS1qdWxpb0Bob3RtYWlsLmNvbSIsInJvbGUiOiJhZG1pbiIsImlhdCI6MTc0MjY3NDkzNSwiZXhwIjoxNzQyNjc1MjM1fQ.OtnKf7JvzAPX6Bun-E_jSIb9uqHMFphaKmHBmWw0tVA",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \r\n    \"email\": \"bayona-eric@hotmail.com\",\r\n    \"password\": \"HolaMundo!\"\r\n    \r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/sessions/login",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"sessions",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "current",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3ZTA1NzE1MDBmNTE2OGNlMTRjYjc5YSIsImVtYWlsIjoiYmF5b25hLWVyaWNxQGhvdG1haWwuY29tIiwicm9sZSI6ImFkbWluIiwiaWF0IjoxNzQyNzU2Nzk1LCJleHAiOjE3NDI3NTcwOTV9.lfQPjtG7z4EFul124s3aOUU8MeSuTTc4ptG0_ZXAcrU",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/sessions/current",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"sessions",
+								"current"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "logout",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/api/sessions/logout",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"sessions",
+								"logout"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "rutasCarts",
+			"item": [
+				{
+					"name": "New Cart",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/api/cart/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"cart",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "buscar carrito por id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/api/cart/{idCart}",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"cart",
+								"{idCart}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "agregar producto en carrito",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/api/cart/{idCart}/product/{idProduct}",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"cart",
+								"{idCart}",
+								"product",
+								"{idProduct}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "todos los carritos",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/api/cart/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"cart",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "eliminar producto del carrito",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/api/cart/{idCart}/product/{idProduct}",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"cart",
+								"{idCart}",
+								"product",
+								"{idProduct}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Cambiar cantidad del producto",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"quantity\": \"19\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/cart/{idCart}/product/{idProduct}",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"cart",
+								"{idCart}",
+								"product",
+								"{idProduct}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "vaciar Carrito",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/api/cart/{idCart}",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"cart",
+								"{idCart}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "purchase",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/api/cart/{idCart}/purchase",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"cart",
+								"{idCart}",
+								"purchase"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "carrito del usuario",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/api/cart/mycart",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"cart",
+								"mycart"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Rutas Productos",
+			"item": [
+				{
+					"name": "Actualizar Producto",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n\t\t\"title\": \"Bici5\",\r\n\t\t\"description\": \"Descripción del nuevo producto\",\r\n\t\t\"code\": \"NP001\",\r\n\t\t\"price\": 20,\r\n\t\t\"status\": true,\r\n\t\t\"stock\": 5,\r\n\t\t\"category\": \"categoria2\",\r\n\t\t\"thumbnails\": [\r\n\t\t\t\"url1\",\r\n\t\t\t\"url2\"\r\n\t\t]\r\n        \r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/products/{idProduct}",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"products",
+								"{idProduct}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Crear Producto",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n\t\t\"title\": \"Bici de Ruta\",\r\n\t\t\"description\": \"Descripción del nuevo producto\",\r\n\t\t\"code\": \"NP001\",\r\n\t\t\"price\": 20,\r\n\t\t\"status\": true,\r\n\t\t\"stock\": 5,\r\n\t\t\"category\": \"categoria2\",\r\n\t\t\"thumbnails\": [\r\n\t\t\t\"url1\",\r\n\t\t\t\"url2\"\r\n\t\t]\r\n        \r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/products/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"products",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "todos los productos",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n\t\t\"title\": \"Bici5\",\r\n\t\t\"description\": \"Descripción del nuevo producto\",\r\n\t\t\"code\": \"NP001\",\r\n\t\t\"price\": 20,\r\n\t\t\"status\": true,\r\n\t\t\"stock\": 5,\r\n\t\t\"category\": \"categoria2\",\r\n\t\t\"thumbnails\": [\r\n\t\t\t\"url1\",\r\n\t\t\t\"url2\"\r\n\t\t]\r\n        \r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/products/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"products",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Eliminar producto por ID",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n\t\t\"title\": \"Bici5\",\r\n\t\t\"description\": \"Descripción del nuevo producto\",\r\n\t\t\"code\": \"NP001\",\r\n\t\t\"price\": 20,\r\n\t\t\"status\": true,\r\n\t\t\"stock\": 5,\r\n\t\t\"category\": \"categoria2\",\r\n\t\t\"thumbnails\": [\r\n\t\t\t\"url1\",\r\n\t\t\t\"url2\"\r\n\t\t]\r\n        \r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/products/{idProduct}",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"products",
+								"{idProduct}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Buscar producto por ID",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n\t\t\"title\": \"Bici5\",\r\n\t\t\"description\": \"Descripción del nuevo producto\",\r\n\t\t\"code\": \"NP001\",\r\n\t\t\"price\": 20,\r\n\t\t\"status\": true,\r\n\t\t\"stock\": 5,\r\n\t\t\"category\": \"categoria2\",\r\n\t\t\"thumbnails\": [\r\n\t\t\t\"url1\",\r\n\t\t\t\"url2\"\r\n\t\t]\r\n        \r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/products/{idProduct}",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"products",
+								"{idProduct}"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Rutas User",
+			"item": [
+				{
+					"name": "todos los usuarios",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/api/users/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"users",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Buscar usuario por ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/api/users/{idUser}",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"users",
+								"{idUser}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Eliminar usuario por Id",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/api/users/{idUser}",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"users",
+								"{idUser}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Actualizar usuario",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"first_name\": \"Julio\"}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/users/{idUser}",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"users",
+								"{idUser}"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}

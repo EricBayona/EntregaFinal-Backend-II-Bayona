@@ -19,8 +19,6 @@ export const Login = ({ handleLogin }) => {
     const data = await response.json();
 
     if (response.ok) {
-      console.log("Datos de usuario", data.user);
-      console.log("token", data.token);
       handleLogin(true);
     }
     //else {
